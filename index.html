@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iceeyz</title>
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --bg:#040404;
@@ -110,10 +111,7 @@ h1::before,
 h2::before,
 h3::before{
   content:"iceeyz@browser:~$ ";
-  color:var(--text);
 }
-
-
 
 p{
   margin:0 0 14px 0;
@@ -140,6 +138,12 @@ p{
   border-bottom:1px solid var(--red);
 }
 
+.astro-img{
+  width:100%;
+  border:1px solid var(--red);
+  margin-bottom:10px;
+}
+
 .footer{
   max-width:var(--max);
   margin:0 auto;
@@ -164,16 +168,20 @@ p{
 }
 </style>
 </head>
+
 <body>
 
 <div class="topbar-wrap">
   <div class="topbar">
     <div class="brand">iceeyz</div>
+
     <nav class="nav">
       <a href="#about">about</a>
       <a href="#projects">projects</a>
+      <a href="#astronomy">astronomy</a>
       <a href="#links">links</a>
     </nav>
+
   </div>
 </div>
 
@@ -195,12 +203,12 @@ p{
 <div class="inner">
 <h2>interests</h2>
 <p>Cybersecurity • 3D-Modeling/Printing • PC Configuration • Astronomy • Image Editing</p>
-<p></p>
 </div>
 </div>
 
 </div>
 </section>
+
 
 <section id="about" class="screen">
 <div class="inner about-grid">
@@ -224,6 +232,7 @@ p{
 </div>
 </section>
 
+
 <section id="projects" class="screen">
 <div class="inner">
 <h2>projects</h2>
@@ -246,25 +255,37 @@ p{
 </div>
 </div>
 
-<div class="box">
-<div class="inner">
-<h3>project platzhalter</h3>
-<p>platzhalter</p>
-<a class="project-link" href="#">github</a>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<h3>project platzhalter</h3>
-<p>platzhalter</p>
-<a class="project-link" href="#">github</a>
-</div>
-</div>
-
 </div>
 </div>
 </section>
+
+
+<section id="astronomy" class="screen">
+<div class="inner">
+
+<h2>astronomy</h2>
+
+<div class="projects-grid">
+
+<div class="box">
+<div class="inner">
+<img src="https://raw.githubusercontent.com/iceeyz1/lightweight-red/main/screenshots/screenshot.png" class="astro-img">
+<p>Jupiter</p>
+</div>
+</div>
+
+<div class="box">
+<div class="inner">
+<img src="https://raw.githubusercontent.com/iceeyz1/lightweight-red/main/screenshots/screenshot.png" class="astro-img">
+<p>Orion Nebula</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</section>
+
 
 <section id="links" class="screen">
 <div class="inner">
@@ -285,3 +306,4 @@ p{
 
 </body>
 </html>
+```
