@@ -49,6 +49,7 @@ a:hover{
   top:0;
   background:#030303;
   border-bottom:1px solid var(--red);
+  z-index: 100;
 }
 
 .topbar{
@@ -151,20 +152,29 @@ p{
   font-size:18px;
 }
 
-@media (max-width:760px){
+/* Custom iframe wrapper to fit the retro theme */
+.iframe-wrapper {
+  background: #000;
+  padding: 8px; /* Reduced padding for a smaller footprint */
+  margin-top: 16px;
+  border: 1px solid var(--red);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
 
+@media (max-width:760px){
   .topbar{
     flex-direction:column;
     align-items:flex-start;
     gap:10px;
   }
-
+  .nav {
+    flex-wrap: wrap;
+  }
   .hero-grid,
   .about-grid,
   .projects-grid{
     grid-template-columns:1fr;
   }
-
 }
 </style>
 </head>
@@ -199,6 +209,11 @@ p{
 <div class="inner">
 <h2>interests</h2>
 <p>Cybersecurity • 3D-Modeling/Printing • PC Configuration • Astronomy • Image Editing</p>
+
+<div class="iframe-wrapper">
+<iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/2M38X60UJnupGPbFTkVPNQ?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+
 </div>
 </div>
 
