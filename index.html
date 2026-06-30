@@ -1,321 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iceeyz</title>
-<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iceeyz</title>
 
-<style>
-:root{
-  --bg:#040404;
-  --panel:#070707;
-  --panel-2:#0a0a0a;
-  --red:#ffb000;
-  --text:#ffbf33;
-  --max:980px;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=IM+Fell+English:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-*{box-sizing:border-box;}
+  <style>
+    :root {
+      --page-width: 1040px;
+      --ink: #263127;
+      --ink-muted: #52604d;
+      --panel: rgba(230, 235, 211, 0.54);
+      --panel-card: rgba(241, 242, 219, 0.24);
+      --border: rgba(48, 66, 45, 0.38);
+      --border-soft: rgba(48, 66, 45, 0.18);
+      --gold: #bd9650;
+      --purple: #66506e;
+      --shadow: rgba(34, 43, 30, 0.28);
+    }
 
-html{scroll-behavior:smooth;}
+    * {
+      box-sizing: border-box;
+    }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:'VT323', monospace;
-  font-size:22px;
-  text-shadow:0 0 6px var(--red);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-a{
-  color:var(--text);
-  text-decoration:none;
-}
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #7d876d;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 1.45;
+    }
 
-a:hover{
-  text-decoration:underline;
-}
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(92, 105, 80, 0.48),
+          rgba(207, 207, 170, 0.27),
+          rgba(80, 92, 69, 0.54)
+        ),
+        url("https://github.com/iceeyz1/iceeyz1.github.io/blob/main/pictures/img.png?raw=true") center / cover;
+      filter: saturate(0.72) sepia(0.18) contrast(0.96);
+    }
 
-.container{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:26px;
-}
+    .backdrop::before,
+    .backdrop::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+    }
 
-.topbar-wrap{
-  position:sticky;
-  top:0;
-  background:#030303;
-  border-bottom:1px solid var(--red);
-  z-index: 100;
-}
+    .backdrop::before {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(248, 242, 206, 0.35), transparent 26rem),
+        radial-gradient(circle at 80% 72%, rgba(52, 72, 48, 0.33), transparent 27rem),
+        linear-gradient(rgba(226, 229, 197, 0.16), rgba(49, 68, 49, 0.18));
+    }
 
-.topbar{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:16px 26px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .backdrop::after {
+      opacity: 0.3;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 6px, rgba(50, 58, 42, 0.07) 7px),
+        repeating-linear-gradient(0deg, transparent 0 5px, rgba(255, 255, 230, 0.08) 6px);
+      mix-blend-mode: soft-light;
+    }
 
-.brand{
-  font-size:24px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.nav{
-  display:flex;
-  gap:12px;
-}
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
 
-.nav a,
-.btn{
-  padding:8px 12px;
-  border:1px solid var(--red);
-  background:#060606;
-}
+    .site {
+      width: min(var(--page-width), calc(100% - 36px));
+      margin: 0 auto;
+      padding: 24px 0 34px;
+    }
 
-.nav a:hover,
-.btn:hover{
-  background:#0b0b0b;
-}
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 50px;
+      padding: 4px 8px;
+    }
 
-.screen{
-  border:1px solid var(--red);
-  background:linear-gradient(180deg,#050505,#080808);
-  margin-bottom:24px;
-  box-shadow:0 0 0 1px #000 inset;
-}
+    .site-name {
+      font-family: "IM Fell English", serif;
+      font-size: 34px;
+      letter-spacing: 0.02em;
+      line-height: 0.8;
+    }
 
-.inner{
-  padding:22px;
-}
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
 
-.hero-grid,
-.about-grid,
-.projects-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
+    .nav a {
+      position: relative;
+      color: #344234;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
 
-h1,h2,h3{
-  font-size:22px;
-  font-weight:normal;
-  letter-spacing:1px;
-  margin:0 0 14px 0;
-}
+    .nav a::after {
+      position: absolute;
+      right: 0;
+      bottom: -4px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
 
-h1::before,
-h2::before,
-h3::before{
-  content:"iceeyz@browser:~$ ";
-}
+    .nav a:hover::after,
+    .nav a:focus-visible::after {
+      transform: scaleX(1);
+    }
 
-p{
-  margin:0 0 14px 0;
-  line-height:1.6;
-}
+    .panel {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 23px;
+      border: 1px solid var(--border);
+      border-radius: 28px 4px;
+      background: var(--panel);
+      box-shadow:
+        0 18px 40px var(--shadow),
+        inset 0 0 0 1px rgba(255, 255, 235, 0.2);
+      backdrop-filter: blur(14px) saturate(0.82);
+      -webkit-backdrop-filter: blur(14px) saturate(0.82);
+    }
 
-.button-row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
+    .panel::before,
+    .panel::after {
+      position: absolute;
+      color: var(--gold);
+      pointer-events: none;
+    }
 
-.box{
-  border:1px solid var(--red);
-  background:var(--panel);
-}
+    .panel::before {
+      top: 12px;
+      left: 16px;
+      content: "✦";
+      font-size: 15px;
+      opacity: 0.75;
+    }
 
-.box .inner{
-  padding:18px;
-}
+    .panel::after {
+      right: 15px;
+      bottom: 9px;
+      content: "☾";
+      font-size: 26px;
+      opacity: 0.56;
+    }
 
-.project-link{
-  border-bottom:1px solid var(--red);
-}
+    .panel-inner {
+      position: relative;
+      z-index: 1;
+      padding: 34px;
+    }
 
-.astro-img{
-  width:100%;
-  border:1px solid var(--red);
-  margin-bottom:10px;
-}
+    .hero {
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(120deg, rgba(226, 233, 211, 0.7), rgba(215, 225, 201, 0.38)),
+        var(--panel);
+    }
 
-.footer{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:0 26px 30px;
-  font-size:18px;
-}
+    /* Decorative botanical illustration in the About section. */
+    .hero::after {
+      right: -100px;
+      bottom: -25px;
+      width: 510px;
+      height: 670px;
+      content: "";
+      background: url("https://github.com/iceeyz1/iceeyz1.github.io/blob/main/pictures/dedd6f8c46fefc62caf8ac3255b12d9f.jpg?raw=true") no-repeat bottom right / contain;
+      filter: sepia(0.25) saturate(0.7);
+      opacity: 0.47;
+      mix-blend-mode: multiply;
+    }
 
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1;
+    }
 
-@media (max-width:760px){
-  .topbar{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-  }
-  .nav {
-    flex-wrap: wrap;
-  }
-  .hero-grid,
-  .about-grid,
-  .projects-grid{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+    h1 {
+      max-width: 610px;
+      font-family: "IM Fell English", serif;
+      font-size: clamp(48px, 6vw, 74px);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-family: "IM Fell English", serif;
+      font-size: clamp(38px, 4vw, 52px);
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 31px;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 20px 0 0;
+      font-size: 25px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-bottom: 1px solid var(--gold);
+      color: #344534;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn::before {
+      color: var(--gold);
+      content: "✧";
+      font-size: 13px;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      color: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      margin-bottom: 27px;
+    }
+
+    .section-heading::after {
+      flex: 1;
+      height: 1px;
+      margin-bottom: 6px;
+      content: "";
+      background: linear-gradient(90deg, rgba(189, 150, 80, 0.7), transparent);
+    }
+
+    .about-grid,
+    .astro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card,
+    .astro-card {
+      position: relative;
+      min-height: 100%;
+      border: 1px solid var(--border-soft);
+      background: var(--panel-card);
+    }
+
+    .card {
+      padding: 23px;
+      border-radius: 16px 2px;
+    }
+
+    .card::before {
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(255, 255, 225, 0.22);
+      border-radius: 11px 1px;
+      content: "";
+      pointer-events: none;
+    }
+
+    .card h3,
+    .card p,
+    .spec-list {
+      position: relative;
+    }
+
+    .card h3::before {
+      color: var(--gold);
+      content: "✦ ";
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    .card p,
+    .project p,
+    .links-panel p {
+      margin: 0;
+    }
+
+    .spec-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .spec-list li {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 9px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(60, 80, 57, 0.15);
+    }
+
+    .spec-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .spec-list strong {
+      color: #58684f;
+      font-family: "Space Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project {
+      position: relative;
+      min-height: 220px;
+      padding: 23px;
+      border-left: 1px solid rgba(92, 107, 76, 0.58);
+      background: linear-gradient(90deg, rgba(237, 240, 215, 0.27), transparent);
+    }
+
+    .project::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0.48;
+    }
+
+    .project h3 {
+      margin-bottom: 12px;
+    }
+
+    .project-link,
+    .github-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--gold);
+      color: #41513e;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-link::before,
+    .github-link::before {
+      color: var(--purple);
+      content: "↗ ";
+    }
+
+    .project-link:hover,
+    .github-link:hover,
+    .project-link:focus-visible,
+    .github-link:focus-visible {
+      color: var(--purple);
+    }
+
+    .astro-note {
+      margin: -12px 0 24px;
+      color: #4c5b46;
+      font-size: 22px;
+      font-style: italic;
+    }
+
+    .astro-card {
+      padding: 14px;
+      border-radius: 18px 2px;
+    }
+
+    .astro-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 1px solid rgba(44, 62, 42, 0.43);
+      object-fit: cover;
+      filter: sepia(0.12) saturate(0.8) contrast(1.04);
+      box-shadow: 0 10px 22px rgba(40, 48, 31, 0.22);
+    }
+
+    .astro-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 15px 3px 2px;
+      font-size: 28px;
+      font-style: italic;
+    }
+
+    .astro-caption span {
+      color: #62705a;
+      font-family: "Space Mono", monospace;
+      font-size: 8px;
+      font-style: normal;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .links-panel p {
+      margin: 11px 0 0;
+    }
+
+    .footer {
+      padding: 14px 0 0;
+      color: #43513d;
+      font-family: "Space Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.13em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .footer::before {
+      margin-right: 8px;
+      color: var(--gold);
+      content: "✦";
+    }
+
+    @media (max-width: 850px) {
+      .hero::after {
+        opacity: 0.28;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 175px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        font-size: 20px;
+      }
+
+      .site {
+        width: min(var(--page-width), calc(100% - 24px));
+        padding-top: 18px;
+      }
+
+      .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 31px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .panel-inner {
+        padding: 25px;
+      }
+
+      .about-grid,
+      .astro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        font-size: 23px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="backdrop" aria-hidden="true"></div>
 
-<div class="topbar-wrap">
-  <div class="topbar">
-    <div class="brand">iceeyz</div>
+  <main class="site">
+    <header class="masthead">
+      <a class="site-name" href="#top">iceeyz</a>
 
-    <nav class="nav">
-      <a href="#about">about</a>
-      <a href="#projects">projects</a>
-      <a href="#astronomy">astronomy</a>
-      <a href="#links">links</a>
-    </nav>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#about">about</a>
+        <a href="#projects">projects</a>
+        <a href="#astronomy">astronomy</a>
+        <a href="#links">links</a>
+      </nav>
+    </header>
 
-  </div>
-</div>
+    <section id="top" class="panel hero">
+      <div class="panel-inner">
+        <h1>About me</h1>
 
-<div class="container">
+        <p class="hero-copy">
+          Got my first PC when I was 11. Ever since then I learned many skills and worked with numerous things like operating systems, games, programming, building PCs and the list just goes on and on.
+        </p>
 
-<section class="screen">
-<div class="inner hero-grid">
+        <div class="button-row">
+          <a class="btn" href="#projects">projects</a>
+          <a class="btn" href="#astronomy">observatory</a>
+        </div>
+      </div>
+    </section>
 
-<div>
-<h1>About me</h1>
-<p>Got my first PC when I was 11. Ever since then I learned many skills and worked with numerous things like operating systems, games, programming, building PCs and the list just goes on and on.</p>
-</div>
+    <section id="about" class="panel">
+      <div class="panel-inner">
+        <div class="section-heading">
+          <h2>Information</h2>
+        </div>
 
-<div class="box">
-<div class="inner">
-<h2>Interests</h2>
-<p>Cybersecurity • 3D-Modeling/Printing • PC Configuration • Astronomy • Image Editing</p>
+        <div class="about-grid">
+          <article class="card">
+            <h3>Interests</h3>
+            <p>Cybersecurity · 3D modeling &amp; printing · astronomy · image editing · gaming</p>
+          </article>
 
+          <article class="card">
+            <h3>Updates</h3>
+            <p>Getting ready for uni :P</p>
+          </article>
 
-</div>
-</div>
+          <article class="card">
+            <h3>Main setup</h3>
+            <ul class="spec-list">
+              <li><strong>CPU</strong> Ryzen 5 2600 OC 4.1GHz</li>
+              <li><strong>GPU</strong> RTX 5060 Ti</li>
+              <li><strong>Memory</strong> 16GB 3200MHz</li>
+            </ul>
+          </article>
 
-</div>
-</section>
+          <article class="card">
+            <h3>ThinkPad T420</h3>
+            <ul class="spec-list">
+              <li><strong>Firmware</strong> libreboot</li>
+              <li><strong>CPU</strong> i7-3632QM</li>
+              <li><strong>dGPU</strong> NVIDIA NVS 4200M [disabled]</li>
+              <li><strong>Wi-Fi card</strong> Intel AX210</li>
+              <li><strong>Memory</strong> 16GB 1600MHz</li>
+              <li><strong>OS</strong> Fedora KDE Plasma</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section id="projects" class="panel">
+      <div class="panel-inner">
+        <div class="section-heading">
+          <h2>Projects</h2>
+        </div>
 
-<section id="about" class="screen">
-<div class="inner about-grid">
+        <div class="projects-grid">
+          <article class="project">
+            <h3>fovchanger2077</h3>
+            <p>FOV patcher for Cyberpunk 2077 using AOB scanning and an in-place code patch.</p>
+            <a class="project-link" href="https://github.com/iceeyz1/fovchanger2077" target="_blank" rel="noopener">GitHub</a>
+          </article>
 
-<div class="box">
-<div class="inner">
-<h2>Main setup</h2>
-<p style="margin:0;">Cpu: Ryzen 5 2600 OC 4.1GHz</p>
-<p style="margin:0;">Gpu: RTX 5060 Ti</p>
-<p style="margin:0;">Memory: 16gb 3200MHz</p>
-</div>
-</div>
+          <article class="project">
+            <h3>refresher.py</h3>
+            <p>Simple script that opens a website and refreshes it automatically.</p>
+            <a class="project-link" href="https://github.com/iceeyz1/refresher" target="_blank" rel="noopener">GitHub</a>
+          </article>
 
-<div class="box">
-<div class="inner">
-<h2>Thinkpad T420</h2>
-<p style="margin:0;">Firmware: libreboot</p>
-<p style="margin:0;">Cpu: i7-3632QM</p>
-<p style="margin:0;">dGpu: NVIDIA NVS 4200M [disabled]</p>
-<p style="margin:0;">WiFi-card: Intel AX210</p>
-<p style="margin:0;">Memory: 16gb 1600MHz</p>
-<p style="margin:0;">OS: Fedora KDE Plasma</p>
-</div>
-</div>
+          <article class="project">
+            <h3>lightweight-red</h3>
+            <p>My Arch Linux Hyprland dotfiles focused on simplicity and a red aesthetic.</p>
+            <a class="project-link" href="https://github.com/iceeyz1/lightweight-red" target="_blank" rel="noopener">GitHub</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-</div>
-</section>
+    <section id="astronomy" class="panel">
+      <div class="panel-inner">
+        <div class="section-heading">
+          <h2>Astrophotography</h2>
+        </div>
 
+        <p class="astro-note">Telescope: Skywatcher Heritage 130P</p>
 
-<section id="projects" class="screen">
-<div class="inner">
-<h2>Projects</h2>
+        <div class="astro-grid">
+          <article class="astro-card">
+            <img
+              class="astro-img"
+              src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/jupiter.jpeg"
+              alt="Astrophotography of Jupiter"
+              loading="lazy"
+            >
+            <div class="astro-caption">
+              Jupiter
+              <span>planetary study</span>
+            </div>
+          </article>
 
-<div class="projects-grid">
+          <article class="astro-card">
+            <img
+              class="astro-img"
+              src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/orion.jpeg"
+              alt="Astrophotography of the Orion Nebula"
+              loading="lazy"
+            >
+            <div class="astro-caption">
+              Orion Nebula
+              <span>deep sky study</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<div class="box">
-<div class="inner">
-<h3>refresher.py</h3>
-<p>simple script that opens a website and refreshes it automatically.</p>
-<a class="project-link" href="https://github.com/iceeyz1/refresher" target="_blank">github</a>
-</div>
-</div>
+    <section id="links" class="panel">
+      <div class="panel-inner links-panel">
+        <h2>Links</h2>
+        <p>Code, experiments, and whatever I am currently building.</p>
+        <a class="github-link" href="https://github.com/iceeyz1" target="_blank" rel="noopener">github.com/iceeyz1</a>
+      </div>
+    </section>
 
-<div class="box">
-<div class="inner">
-<h3>lightweight-red</h3>
-<p>My Arch Linux hyprland dotfiles focused on simplicity and a red aesthetic.</p>
-<a class="project-link" href="https://github.com/iceeyz1/lightweight-red/" target="_blank">github</a>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<h3>fovchanger2077</h3>
-<p>FOV patcher for Cyberpunk 2077 using AOB scanning and an inplace code patch.</p>
-<a class="project-link" href="https://github.com/iceeyz1/fovchanger2077" target="_blank">github</a>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-
-<section id="astronomy" class="screen">
-<div class="inner">
-
-<h2>Astrophotography - Skywatcher Heritage 130p</h2>
-
-<div class="projects-grid">
-
-<div class="box">
-<div class="inner">
-<img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/jupiter.jpeg" class="astro-img">
-<p>Jupiter</p>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/orion.jpeg" class="astro-img">
-<p>Orion Nebula</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-
-<section id="links" class="screen">
-<div class="inner">
-
-<div class="box">
-<div class="inner">
-<h2>Links</h2>
-<p><a class="project-link" href="https://github.com/iceeyz1" target="_blank">github</a></p>
-</div>
-</div>
-
-</div>
-</section>
-
-</div>
-
-<div class="footer"></div>
-
+    <footer class="footer">iceeyz · under the same sky</footer>
+  </main>
 </body>
 </html>
