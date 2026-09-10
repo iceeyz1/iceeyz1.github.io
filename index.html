@@ -1,324 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iceeyz</title>
-<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iceeyz</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#040404;
-  --panel:#070707;
-  --panel-2:#0a0a0a;
-  --red:#ffb000;
-  --text:#ffbf33;
-  --max:980px;
-}
+  <style>
+    :root{
+      --bg:#040404;
+      --panel:#070707;
+      --panel-2:#0a0a0a;
+      --red:#ffb000;
+      --text:#ffbf33;
+      --max:980px;
+    }
 
-*{box-sizing:border-box;}
+    *{box-sizing:border-box;}
 
-html{scroll-behavior:smooth;}
+    html{scroll-behavior:smooth;}
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:'VT323', monospace;
-  font-size:22px;
-  text-shadow:0 0 6px var(--red);
-}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'VT323', monospace;
+      font-size:22px;
+      text-shadow:0 0 6px var(--red);
+    }
 
-a{
-  color:var(--text);
-  text-decoration:none;
-}
+    a{
+      color:var(--text);
+      text-decoration:none;
+    }
 
-a:hover{
-  text-decoration:underline;
-}
+    a:hover{
+      text-decoration:underline;
+    }
 
-.container{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:26px;
-}
+    .container{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:26px;
+    }
 
-.topbar-wrap{
-  position:sticky;
-  top:0;
-  background:#030303;
-  border-bottom:1px solid var(--red);
-  z-index: 100;
-}
+    .topbar-wrap{
+      position:sticky;
+      top:0;
+      background:#030303;
+      border-bottom:1px solid var(--red);
+      z-index: 100;
+    }
 
-.topbar{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:16px 26px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .topbar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 26px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
-.brand{
-  font-size:24px;
-}
+    .brand{
+      font-size:24px;
+    }
 
-.nav{
-  display:flex;
-  gap:12px;
-}
+    .nav{
+      display:flex;
+      gap:12px;
+    }
 
-.nav a,
-.btn{
-  padding:8px 12px;
-  border:1px solid var(--red);
-  background:#060606;
-}
+    .nav a,
+    .btn{
+      padding:8px 12px;
+      border:1px solid var(--red);
+      background:#060606;
+    }
 
-.nav a:hover,
-.btn:hover{
-  background:#0b0b0b;
-}
+    .nav a:hover,
+    .btn:hover{
+      background:#0b0b0b;
+    }
 
-.screen{
-  border:1px solid var(--red);
-  background:linear-gradient(180deg,#050505,#080808);
-  margin-bottom:24px;
-  box-shadow:0 0 0 1px #000 inset;
-}
+    .screen{
+      border:1px solid var(--red);
+      background:linear-gradient(180deg,#050505,#080808);
+      margin-bottom:24px;
+      box-shadow:0 0 0 1px #000 inset;
+    }
 
-.inner{
-  padding:22px;
-}
+    .inner{
+      padding:22px;
+    }
 
-.hero-grid,
-.about-grid,
-.projects-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-}
+    .hero-grid,
+    .about-grid,
+    .projects-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
 
-h1,h2,h3{
-  font-size:22px;
-  font-weight:normal;
-  letter-spacing:1px;
-  margin:0 0 14px 0;
-}
+    h1,h2,h3{
+      font-size:22px;
+      font-weight:normal;
+      letter-spacing:1px;
+      margin:0 0 14px 0;
+    }
 
-h1::before,
-h2::before,
-h3::before{
-  content:"iceeyz@browser:~$ ";
-}
+    h1::before,
+    h2::before,
+    h3::before{
+      content:"iceeyz@browser:~$ ";
+    }
 
-p{
-  margin:0 0 14px 0;
-  line-height:1.6;
-}
+    p{
+      margin:0 0 14px 0;
+      line-height:1.6;
+    }
 
-.button-row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
+    .button-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
 
-.box{
-  border:1px solid var(--red);
-  background:var(--panel);
-}
+    .box{
+      border:1px solid var(--red);
+      background:var(--panel);
+    }
 
-.box .inner{
-  padding:18px;
-}
+    .box .inner{
+      padding:18px;
+    }
 
-.project-link{
-  border-bottom:1px solid var(--red);
-}
+    .project-link{
+      border-bottom:1px solid var(--red);
+    }
 
-.astro-img{
-  width:100%;
-  border:1px solid var(--red);
-  margin-bottom:10px;
-}
+    .astro-img{
+      width:100%;
+      border:1px solid var(--red);
+      margin-bottom:10px;
+    }
 
-.footer{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:0 26px 30px;
-  font-size:18px;
-}
+    .footer{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 26px 30px;
+      font-size:18px;
+    }
 
 
-@media (max-width:760px){
-  .topbar{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-  }
-  .nav {
-    flex-wrap: wrap;
-  }
-  .hero-grid,
-  .about-grid,
-  .projects-grid{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+    @media (max-width:760px){
+      .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="topbar-wrap">
-  <div class="topbar">
-    <div class="brand">iceeyz</div>
+  <div class="topbar-wrap">
+    <div class="topbar">
+      <div class="brand">iceeyz</div>
 
-    <nav class="nav">
-      <a href="#setup">setup</a>
-      <a href="#projects">projects</a>
-      <a href="#astronomy">astronomy</a>
-      <a href="#links">links</a>
-    </nav>
+      <nav class="nav">
+        <a href="#setup">setup</a>
+        <a href="#projects">projects</a>
+        <a href="#astronomy">astronomy</a>
+        <a href="#links">links</a>
+      </nav>
+
+    </div>
+  </div>
+
+  <div class="container">
+
+    <section class="screen">
+      <div class="inner hero-grid">
+
+        <div>
+          <h1>Information</h1>
+          <p>Getting ready for uni</p>
+        </div>
+
+        <div class="box">
+          <div class="inner">
+            <h2>Interests</h2>
+            <p>Cybersecurity • 3D-Modeling/Printing • PC Configuration • Astronomy • Reverse Engineering</p>
+
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="setup" class="screen">
+      <div class="inner about-grid">
+
+        <div class="box">
+          <div class="inner">
+            <h2>Main setup</h2>
+            <p style="margin:0;">Cpu: Ryzen 5 2600 OC 4.1GHz</p>
+            <p style="margin:0;">Gpu: RTX 5060 Ti</p>
+            <p style="margin:0;">Memory: 16gb 3200MHz</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="inner">
+            <h2>Thinkpad T420</h2>
+            <p style="margin:0;">Firmware: libreboot</p>
+            <p style="margin:0;">Cpu: i7-3632QM</p>
+            <p style="margin:0;">dGpu: NVIDIA NVS 4200M [disabled]</p>
+            <p style="margin:0;">WiFi-card: Intel AX210</p>
+            <p style="margin:0;">Memory: 16gb 1600MHz</p>
+            <p style="margin:0;">OS1: Fedora KDE Plasma</p>
+            <p style="margin:0;">OS2: Windows 11 [stripped-down]</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="projects" class="screen">
+      <div class="inner">
+        <h2>Projects</h2>
+
+        <div class="projects-grid">
+
+          <div class="box">
+            <div class="inner">
+              <h3>refresher.py</h3>
+              <p>simple script that opens a website and refreshes it automatically.</p>
+              <a class="project-link" href="https://github.com/iceeyz1/refresher" target="_blank">github</a>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="inner">
+              <h3>lightweight-red</h3>
+              <p>My Arch Linux hyprland dotfiles focused on simplicity and a red aesthetic.</p>
+              <a class="project-link" href="https://github.com/iceeyz1/lightweight-red/" target="_blank">github</a>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="inner">
+              <h3>fovchanger2077</h3>
+              <p>FOV patcher for Cyberpunk 2077 using AOB scanning and an inplace code patch.</p>
+              <a class="project-link" href="https://github.com/iceeyz1/fovchanger2077" target="_blank">github</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <section id="astronomy" class="screen">
+      <div class="inner">
+
+        <h2>Astrophotography - Skywatcher Heritage 130p</h2>
+
+        <div class="projects-grid">
+
+          <div class="box">
+            <div class="inner">
+              <img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/jupiter.jpeg" class="astro-img">
+              <p>Jupiter</p>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="inner">
+              <img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/orion.jpeg" class="astro-img">
+              <p>Orion Nebula</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="links" class="screen">
+      <div class="inner">
+
+        <div class="box">
+          <div class="inner">
+            <h2>Links</h2>
+            <p><a class="project-link" href="https://github.com/iceeyz1" target="_blank"><img src="https://cdn.simpleicons.org/github/ffbf33" alt="" style="width:1em;height:1em;vertical-align:-0.12em;margin-right:5px;">github</a></p>
+            <p><a class="project-link" href="https://leetcode.com/u/iceeyz/" target="_blank"><img src="https://cdn.simpleicons.org/leetcode/ffbf33" alt="" style="width:1em;height:1em;vertical-align:-0.12em;margin-right:5px;">leetcode</a></p>
+            <p><a class="project-link" href="https://profile.hackthebox.com/profile/019f57a1-2e0a-73ea-8873-4a9bb870eb84" target="_blank"><img src="https://cdn.simpleicons.org/hackthebox/ffbf33" alt="" style="width:1em;height:1em;vertical-align:-0.12em;margin-right:5px;">hackthebox</a></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
   </div>
-</div>
 
-<div class="container">
-
-<section class="screen">
-<div class="inner hero-grid">
-
-<div>
-<h1>Information</h1>
-<p>Getting ready for uni</p>
-</div>
-
-<div class="box">
-<div class="inner">
-<h2>Interests</h2>
-<p>Cybersecurity • 3D-Modeling/Printing • PC Configuration • Astronomy • Reverse Engineering</p>
-
-
-</div>
-</div>
-
-</div>
-</section>
-
-
-<section id="setup" class="screen">
-<div class="inner about-grid">
-
-<div class="box">
-<div class="inner">
-<h2>Main setup</h2>
-<p style="margin:0;">Cpu: Ryzen 5 2600 OC 4.1GHz</p>
-<p style="margin:0;">Gpu: RTX 5060 Ti</p>
-<p style="margin:0;">Memory: 16gb 3200MHz</p>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<h2>Thinkpad T420</h2>
-<p style="margin:0;">Firmware: libreboot</p>
-<p style="margin:0;">Cpu: i7-3632QM</p>
-<p style="margin:0;">dGpu: NVIDIA NVS 4200M [disabled]</p>
-<p style="margin:0;">WiFi-card: Intel AX210</p>
-<p style="margin:0;">Memory: 16gb 1600MHz</p>
-<p style="margin:0;">OS1: Fedora KDE Plasma</p>
-<p style="margin:0;">OS2: Windows 11 [stripped-down]</p>
-</div>
-</div>
-
-</div>
-</section>
-
-
-<section id="projects" class="screen">
-<div class="inner">
-<h2>Projects</h2>
-
-<div class="projects-grid">
-
-<div class="box">
-<div class="inner">
-<h3>refresher.py</h3>
-<p>simple script that opens a website and refreshes it automatically.</p>
-<a class="project-link" href="https://github.com/iceeyz1/refresher" target="_blank">github</a>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<h3>lightweight-red</h3>
-<p>My Arch Linux hyprland dotfiles focused on simplicity and a red aesthetic.</p>
-<a class="project-link" href="https://github.com/iceeyz1/lightweight-red/" target="_blank">github</a>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<h3>fovchanger2077</h3>
-<p>FOV patcher for Cyberpunk 2077 using AOB scanning and an inplace code patch.</p>
-<a class="project-link" href="https://github.com/iceeyz1/fovchanger2077" target="_blank">github</a>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-
-<section id="astronomy" class="screen">
-<div class="inner">
-
-<h2>Astrophotography - Skywatcher Heritage 130p</h2>
-
-<div class="projects-grid">
-
-<div class="box">
-<div class="inner">
-<img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/jupiter.jpeg" class="astro-img">
-<p>Jupiter</p>
-</div>
-</div>
-
-<div class="box">
-<div class="inner">
-<img src="https://raw.githubusercontent.com/iceeyz1/iceeyz1.github.io/main/pictures/orion.jpeg" class="astro-img">
-<p>Orion Nebula</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-
-<section id="links" class="screen">
-<div class="inner">
-
-<div class="box">
-<div class="inner">
-<h2>Links</h2>
-<p><a class="project-link" href="https://github.com/iceeyz1" target="_blank">github</a></p>
-<p><a class="project-link" href="https://leetcode.com/u/iceeyz/" target="_blank">leetcode</a></p>
-<p><a class="project-link" href="https://profile.hackthebox.com/profile/019f57a1-2e0a-73ea-8873-4a9bb870eb84" target="_blank">hackthebox</a></p>
-</div>
-</div>
-
-</div>
-</section>
-
-</div>
-
-<div class="footer"></div>
+  <div class="footer"></div>
 
 </body>
 </html>
