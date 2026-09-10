@@ -10,12 +10,12 @@ The site is a simple custom built webpage made with HTML and CSS.
 
 ## Content
 
-It may include:
+Includes:
 - personal info
+- specs
 - project showcases
 - links
-- future additions and redesigns
 
 ## Notes
 
-This website will keep changing, so the repo will be updated over time as I add new sections, projects, and content.
+This website will keep changing, so the repo will be updated over time as I add new sections, projects and content.
